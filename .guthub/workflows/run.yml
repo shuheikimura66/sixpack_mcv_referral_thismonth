@@ -1,4 +1,4 @@
-name: MCV Download Thismonth
+name: Sixpack MCV Referral Thismonth
 
 on:
   workflow_dispatch:
