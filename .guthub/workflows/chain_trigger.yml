@@ -1,0 +1,15 @@
+name: Chain Trigger - MCV Referral Thismonth
+
+on:
+  workflow_run:
+    workflows: ["Sixpack MCV Referral Thismonth"]
+    types: [completed]
+
+jobs:
+  trigger-next:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Trigger GAS Webhook
+        run: |
+          curl -X GET "${{ secrets.GAS_WEBHOOK_URL }}"
